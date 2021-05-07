@@ -1,0 +1,40 @@
+.content {
+	display: flex;
+
+	border-radius: 5px;
+	height: 100%;
+
+	.leftSide {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	.rightSide {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		height: 100%;
+		width: 100%;
+
+		.profileName {
+			font-size: 64px;
+			color: black;
+			margin-bottom: 20px;
+			margin-top: 10px;
+		}		
+
+		.skills {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+
+			.fieldset {
+				margin: 10px;
+				width: 238px;
+				height: 650px;
+			}
+		}
+	}
+}
