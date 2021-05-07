@@ -14,7 +14,7 @@ const ProfilesLocalStorageService = () => {
 
   const openProfiles = () => {
     let stringProfiles = LocalStorageService.open('profiles')
-    return JSON.parse(stringProfiles).profiles
+    return stringProfiles ? JSON.parse(stringProfiles).profiles : []
   }
 
   const removeProfiles = () => {
