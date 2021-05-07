@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "//ordem-normal/static/css/main.9ec4f0d2.chunk.css",
+    "main.js": "//ordem-normal/static/js/main.69d18557.chunk.js",
+    "main.js.map": "//ordem-normal/static/js/main.69d18557.chunk.js.map",
+    "runtime-main.js": "//ordem-normal/static/js/runtime-main.0c6138ee.js",
+    "runtime-main.js.map": "//ordem-normal/static/js/runtime-main.0c6138ee.js.map",
+    "static/css/2.859d5127.chunk.css": "//ordem-normal/static/css/2.859d5127.chunk.css",
+    "static/js/2.fe189b22.chunk.js": "//ordem-normal/static/js/2.fe189b22.chunk.js",
+    "static/js/2.fe189b22.chunk.js.map": "//ordem-normal/static/js/2.fe189b22.chunk.js.map",
+    "index.html": "//ordem-normal/index.html",
+    "static/css/2.859d5127.chunk.css.map": "//ordem-normal/static/css/2.859d5127.chunk.css.map",
+    "static/css/main.9ec4f0d2.chunk.css.map": "//ordem-normal/static/css/main.9ec4f0d2.chunk.css.map",
+    "static/js/2.fe189b22.chunk.js.LICENSE.txt": "//ordem-normal/static/js/2.fe189b22.chunk.js.LICENSE.txt",
+    "static/media/Header.fbcc51aa.jpg": "//ordem-normal/static/media/Header.fbcc51aa.jpg",
+    "static/media/Placeholder.c3f94521.png": "//ordem-normal/static/media/Placeholder.c3f94521.png",
+    "static/media/index.scss": "//ordem-normal/static/media/background.a592c688.jpg",
+    "static/media/primereact.min.css": "//ordem-normal/static/media/color.6441e63a.png",
+    "static/media/primeicons.css": "//ordem-normal/static/media/primeicons.e61f3495.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0c6138ee.js",
+    "static/css/2.859d5127.chunk.css",
+    "static/js/2.fe189b22.chunk.js",
+    "static/css/main.9ec4f0d2.chunk.css",
+    "static/js/main.69d18557.chunk.js"
+  ]
+}
