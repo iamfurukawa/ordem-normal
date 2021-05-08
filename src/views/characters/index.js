@@ -6,6 +6,7 @@ import { Dialog } from 'primereact/dialog'
 import { InputText } from 'primereact/inputtext'
 
 import ReactGA from 'react-ga'
+import { v4 as uuidv4 } from 'uuid'
 
 import Menu from '../../components/menu'
 import Header from '../../components/header'
@@ -15,7 +16,7 @@ import ProfileModel from '../../models/character-profile'
 import ProfilesLocalStorageService from '../../services/local-storage/profiles-local-storage-service'
 
 const CharactersView = () => {
-	//ReactGA.initialize('UA-196562490-1', { debug: true });
+	//ReactGA.initialize('UA-196562490-1', { debug: true })
 
 	const [isNewProfile, setNewProfile] = useState(false)
 
@@ -28,7 +29,7 @@ const CharactersView = () => {
 		ReactGA.event({
 			category: 'User',
 			action: 'Iniciando acesso'
-		});
+		})
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
@@ -49,7 +50,7 @@ const CharactersView = () => {
 				<Button label="Cancelar" icon="pi pi-times" onClick={() => setNewProfile(false)} className="p-button-danger" />
 				<Button label="Criar" icon="pi pi-check" onClick={() => addNewProfile()} className="p-button-success" autoFocus />
 			</div>
-		);
+		)
 	}
 
 	const addNewProfile = () => {
@@ -61,39 +62,53 @@ const CharactersView = () => {
 			ReactGA.event({
 				category: 'User',
 				action: 'Criando profile'
-			});
+			})
 		}
 		setNewProfile(false)
 	}
 
-	const loadingProfile = () => {
+	const loadingProfile = async (event) => {
 		ReactGA.event({
 			category: 'User',
 			action: 'Carregando profile'
-		});
+		})
+
+		const fileUploaded = event.target.files[0]
+		const perfilUploaded = JSON.parse(await _getBase64(fileUploaded))
+		perfilUploaded.uuid = uuidv4() //rewriting uuid to close one by one
+		addPerfil([...perfis, perfilUploaded])
+	}
+
+	const _getBase64 = (file) => {
+		return new Promise((resolve, reject) => {
+			const reader = new FileReader()
+			reader.onload = () => resolve(reader.result)
+			reader.onerror = error => reject(error)
+			reader.readAsText(file)
+		})
 	}
 
 	const downloadProfile = async (profile) => {
 		ReactGA.event({
 			category: 'User',
 			action: 'Baixando profile'
-		});
+		})
 
-		const fileName = profile.nome;
-		const json = JSON.stringify(profile);
-		const blob = new Blob([json], { type: 'application/json' });
-		const href = await URL.createObjectURL(blob);
-		const link = document.createElement('a');
-		link.href = href;
-		link.download = fileName + ".json";
-		document.body.appendChild(link);
-		link.click();
-		document.body.removeChild(link);
+		const fileName = profile.nome
+		const json = JSON.stringify(profile)
+		const blob = new Blob([json], { type: 'application/json' })
+		const href = await URL.createObjectURL(blob)
+		const link = document.createElement('a')
+		link.href = href
+		link.download = fileName + ".json"
+		document.body.appendChild(link)
+		link.click()
+		document.body.removeChild(link)
 	}
 
 	const handleUpdateProfile = (profile) => {
 		const copyProfiles = [...perfis]
-		copyProfiles[copyProfiles.findIndex(el => el.uuid === profile.uuid)] = profile;
+		copyProfiles[copyProfiles.findIndex(el => el.uuid === profile.uuid)] = profile
 		addPerfil(copyProfiles)
 	}
 
@@ -130,4 +145,4 @@ const CharactersView = () => {
 	)
 }
 
-export default CharactersView;
+export default CharactersView

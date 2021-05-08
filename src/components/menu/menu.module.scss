@@ -1,0 +1,20 @@
+.customInput {
+  input[type="file"] {
+    display: none;
+  }
+
+  span {
+    margin-right: 10px;
+  }
+
+  .customFileUpload {
+    display: inline-block;
+    padding: 9px 9px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+  .customFileUpload:hover {
+    background-color: #e9ecef;
+  }
+}

@@ -1,7 +1,11 @@
 const LocalStorageService = () => {
 
   const save = (key, value) => {
-    localStorage.setItem(key, value)
+    try {
+      localStorage.setItem(key, value)
+    } catch (e) {
+      alert('O armazenamento do seu navegador está cheio, por favor salve alguns perfis e feche-os.')
+    }
   }
 
   const open = (key) => {
