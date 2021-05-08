@@ -4,10 +4,10 @@
 [![Twitter][twitter-shield]][twitter-url]
 
 ## Sobre o projeto
-#### Aqui tem uma sugestão de ficha de personagem para o RPG Ordem Normal, nela contém alguns atributos padrões em RPG como: força, destreza, constituição, inteligência, carisma e conhecimento. Também tem outros menos comum: sorte, encontrar, escutar, furtividade, esquiva, primeiros socorros. E por fim algumas mais especificas: exposição ao normal, usar eletronicos, tarefa doméstica, cozinhar, dirigir, flertar, dançar, socializar, trabalhar, atrividade fisica, brincar com pet, dicção e imunidade.
+Aqui tem uma sugestão de ficha de personagem para o RPG Ordem Normal, nela contém alguns atributos padrões em RPG como: força, destreza, constituição, inteligência, carisma e conhecimento. Também tem outros menos comum: sorte, encontrar, escutar, furtividade, esquiva, primeiros socorros. E por fim algumas mais especificas: exposição ao normal, usar eletronicos, tarefa doméstica, cozinhar, dirigir, flertar, dançar, socializar, trabalhar, atrividade fisica, brincar com pet, dicção e imunidade.
 &nbsp;
 ## Funcionalidades
-#### Desde guardar os pontos das skills do personagem é possível registrar uma imagem e o dinheiro e vida atuais. Você pode exportar e importar personagens para compartilhar com os amiguinhos. E por fim também é possível dar roladas de D6, D20 e D100 além de um sistema personalizado para as skills.
+Desde guardar os pontos das skills do personagem é possível registrar uma imagem e o dinheiro e vida atuais. Você pode exportar e importar personagens para compartilhar com os amiguinhos. E por fim também é possível dar roladas de D6, D20 e D100 além de um sistema personalizado para as skills.
 &nbsp;
 ## Melhorias futuras
  - A versão inicial desse projeto contava com integração com o firebase para compartilhamento de fichas de personagem, mas pelo alto consumo de dados isso se tornaria inviável por agora.
