@@ -22,7 +22,6 @@ const InputEditable = ({ text = '', setValue = (text) => { }, className = '', is
 
   const handleChange = (evt) => {
     textRef.current = trimSpaces(evt.target.value)
-    console.log(textRef.current)
   };
 
   const handleOnKeyDown = (evt) => {   

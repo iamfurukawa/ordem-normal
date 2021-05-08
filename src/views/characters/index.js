@@ -73,11 +73,22 @@ const CharactersView = () => {
 		});
 	}
 
-	const downloadProfile = () => {
+	const downloadProfile = async (profile) => {
 		ReactGA.event({
 			category: 'User',
 			action: 'Baixando profile'
 		});
+
+		const fileName = profile.nome;
+		const json = JSON.stringify(profile);
+		const blob = new Blob([json], { type: 'application/json' });
+		const href = await URL.createObjectURL(blob);
+		const link = document.createElement('a');
+		link.href = href;
+		link.download = fileName + ".json";
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
 	}
 
 	const handleUpdateProfile = (profile) => {
@@ -98,14 +109,14 @@ const CharactersView = () => {
 
 	return (
 		<>
-			<Menu novoPersonagemOnClick={() => setNewProfile(true)} loadingProfile={loadingProfile}/>
+			<Menu novoPersonagemOnClick={() => setNewProfile(true)} loadingProfile={loadingProfile} />
 
 			<div class="center">
 
 				<Header />
 
 				<TabView style={{ width: '80%', marginBottom: '30px' }} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
-					{perfis.map(profile => <TabPanel header={profile.nome}> <Profile profileModel={profile} updateProfile={handleUpdateProfile} closeProfile={handleCloseProfile} downloadProfile={downloadProfile}/> </TabPanel>)}
+					{perfis.map(profile => <TabPanel header={profile.nome}> <Profile profileModel={profile} updateProfile={handleUpdateProfile} closeProfile={handleCloseProfile} downloadProfile={downloadProfile} /> </TabPanel>)}
 				</TabView>
 			</div>
 
