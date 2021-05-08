@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import _ from 'lodash'
 
 import { Divider } from 'primereact/divider'
@@ -6,8 +6,6 @@ import { Fieldset } from 'primereact/fieldset'
 import { InputTextarea } from 'primereact/inputtextarea'
 import { Toolbar } from 'primereact/toolbar'
 import { Button } from 'primereact/button'
-import { confirmDialog } from 'primereact/confirmdialog'
-import { Toast } from 'primereact/toast'
 
 import ImgPrev from '../../../components/img-preview'
 import InputEditable from '../../../components/input-editable'
@@ -17,14 +15,11 @@ import Dice from '../../../components/dice'
 
 import ProfileModel from '../../../models/character-profile'
 import DiceService from '../../../services/dice/dice-service'
-import FirebaseStorageService from '../../../services/firebase/firebase-storage-service'
-import FirebaseFirestoreService from '../../../services/firebase/firebase-firestore-service'
 
 import styles from './profile.module.scss'
 
-const Profile = ({ profileModel = new ProfileModel(), updateProfile = (profile) => { }, removeProfile = (profile) => { }, closeProfile = (profile) => { }, isDisabled = false }) => {
+const Profile = ({ profileModel = new ProfileModel(), updateProfile = (profile) => { }, downloadProfile = (profile) => { }, closeProfile = (profile) => { }, isDisabled = false }) => {
 
-	const toast = useRef()
 	const [profile, setProfile] = useState(profileModel)
 	const [diceValue, setDiceValue] = useState(0)
 
@@ -50,37 +45,8 @@ const Profile = ({ profileModel = new ProfileModel(), updateProfile = (profile) 
 		return <Dice value={diceValue} text={diceValue} />
 	}
 
-	const handleDelete = () => {
-		confirmDialog({
-			message: 'Você deseja deletar essa ficha da sua lista?',
-			header: 'Aopa!',
-			icon: 'pi pi-exclamation-triangle',
-			accept: () => {
-				removeProfile(profile)
-			},
-			reject: () => { }
-		});
-	}
-
-	const handleSave = async () => {
-		//await FirebaseStorageService.storeProfileImage(profile.img.split(',')[1], 'imagem_de_vdd')
-		//const res = await FirebaseStorageService.getProfileImage('imagem_de_vdd')
-		//console.log(res)
-		FirebaseFirestoreService.get('users').then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
-				console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-			});
-		})
-	}
-
 	const leftContents = (
-		<>
-			<Button icon="pi pi-plus" className="p-button-success p-mr-2" label={"Salvar"} onClick={handleSave} />
-			{isDisabled
-				? <Button icon="pi pi-plus" className="p-button-success p-mr-2" label={"Adicionar"} />
-				: <Button icon="pi pi-minus" className="p-button-danger p-mr-2" label={"Excluir"} onClick={handleDelete} />
-			}
-		</>
+		<Button icon="pi pi-download" className="p-button-success p-mr-2" label={"Download"} onClick={() => downloadProfile(profile)} />
 	)
 
 	const rightContents = (
@@ -89,7 +55,6 @@ const Profile = ({ profileModel = new ProfileModel(), updateProfile = (profile) 
 
 	return (
 		<div className={styles.content}>
-			<Toast ref={toast} />
 			<div className={styles.leftSide}>
 				<ImgPrev img={profile.img} setImage={(v) => handleSetProfile('img', v)} isDisabled={isDisabled} />
 				<MoneyHPForm money={profile.dinheiro} hp={profileModel.vida} setMoney={(v) => handleSetProfile('dinheiro', v)} setHp={(v) => handleSetProfile('vida', v)} isDisabled={isDisabled} />
@@ -135,7 +100,6 @@ const Profile = ({ profileModel = new ProfileModel(), updateProfile = (profile) 
 					</Fieldset>
 
 					<Fieldset className={styles.fieldset} legend="Normais">
-						<Skill name={"Tomar banho"} value={profile.tomarBanho} setValue={(v) => handleSetProfile('tomarBanho', v)} action={() => handleDice('tomarBanho')} isDisabled={isDisabled} />
 						<Skill name={"Atividade fisica"} value={profile.atividadeFisica} setValue={(v) => handleSetProfile('atividadeFisica', v)} action={() => handleDice('atividadeFisica')} isDisabled={isDisabled} />
 						<Skill name={"Brincar com pet"} value={profile.brincarComPet} setValue={(v) => handleSetProfile('brincarComPet', v)} action={() => handleDice('brincarComPet')} isDisabled={isDisabled} />
 					</Fieldset>

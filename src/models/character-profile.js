@@ -3,9 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 const Profile = () => {
   return {
     uuid: uuidv4(),
-    criador: '',
     img: null,
-    imgUrl: '',
     nome: '',
 
     dinheiro: 0,
@@ -37,7 +35,6 @@ const Profile = () => {
     socializar: 0,
     trabalhar: 0,
     //normais 2
-    tomarBanho: 0,
     atividadeFisica: 0,
     brincarComPet: 0,
     //outros
