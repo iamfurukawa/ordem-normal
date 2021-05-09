@@ -6,8 +6,8 @@ const Profile = () => {
     img: null,
     nome: '',
 
-    dinheiro: 1,
-    vida: 1,
+    dinheiro: 0,
+    vida: 0,
     //principais
     forca: 1,
     destreza: 1,

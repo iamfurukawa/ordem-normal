@@ -8,6 +8,7 @@ const Presentation = () => {
       <p>Sugestões de melhorias, novos atributos ou funcionalidades sempre são bem vindas!</p>
       <h2>Algumas funcionalidades</h2>
       <p>Desde guardar os pontos das skills, items, background e foto do personagem também é possível guardar e o dinheiro e vida atuais. Você pode <b>exportar</b> e <b>importar</b> personagens e compartilhar com os amiguinhos. E por fim também é possível dar roladas de D6, D20 e D100 além de um sistema personalizado para as skills.</p>
+      <p>Ah! E para começar a usar, só clicar no menu em <i>Novo Personagem</i>.</p>
       <h2>Sistema de roladas</h2>
       <p>Foi utilizada o mesmo sistema de roladas do RPG <i>Ordem Paranormal: Desconjuração</i>, que pode ser encontrada aqui: <a href="https://www.twitch.tv/videos/789220439?t=00h11m34s">Live do Cellbit</a> e aqui ó: <a href="https://github.com/Dogoso/RPG-FICHA-DINAMICA">Dogoso/RPG-FICHA-DINAMICA</a>.</p>
       <h2>Próximos passos</h2>
