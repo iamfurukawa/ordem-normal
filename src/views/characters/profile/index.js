@@ -22,7 +22,7 @@ const Profile = ({ profileModel = new ProfileModel(), updateProfile = (profile) 
 
 	const [profile, setProfile] = useState(profileModel)
 	const [diceValue, setDiceValue] = useState(0)
-	const [diceText, setDiceText] = useState('...')
+	const [diceText, setDiceText] = useState('')
 
 	const handleSetProfile = (prop, entry) => {
 		const copyProfile = Object.assign({}, profile)
@@ -83,7 +83,7 @@ const Profile = ({ profileModel = new ProfileModel(), updateProfile = (profile) 
 					<Fieldset className={styles.fieldset} legend="Secundárias">
 						<Skill name={"Sorte"} value={profile.sorte} setValue={(v) => handleSetProfile('sorte', v)} action={() => handleDice('sorte')} isDisabled={isDisabled} />
 						<Skill name={"Dicção"} value={profile.diccao} setValue={(v) => handleSetProfile('diccao', v)} action={() => handleDice('diccao')} isDisabled={isDisabled} />
-						<Skill name={"Imunidade"} value={profile.imunidade} setValue={(v) => handleSetProfile('imunidade', v)} action={() => handleDice('imunidade')} isDisabled={isDisabled} />
+						<Skill name={"Imunidade (saúde)"} value={profile.imunidade} setValue={(v) => handleSetProfile('imunidade', v)} action={() => handleDice('imunidade')} isDisabled={isDisabled} />
 						<Skill name={"Encontrar"} value={profile.encontrar} setValue={(v) => handleSetProfile('encontrar', v)} action={() => handleDice('encontrar')} isDisabled={isDisabled} />
 						<Skill name={"Escutar"} value={profile.escutar} setValue={(v) => handleSetProfile('escutar', v)} action={() => handleDice('escutar')} isDisabled={isDisabled} />
 						<Skill name={"Furtividade"} value={profile.furtividade} setValue={(v) => handleSetProfile('furtividade', v)} action={() => handleDice('furtividade')} isDisabled={isDisabled} />

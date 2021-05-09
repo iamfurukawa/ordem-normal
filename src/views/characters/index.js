@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Menu from '../../components/menu'
 import Header from '../../components/header'
 import Profile from './profile'
+import Presentation from './presentation'
 
 import ProfileModel from '../../models/character-profile'
 import ProfilesLocalStorageService from '../../services/local-storage/profiles-local-storage-service'
@@ -40,7 +41,7 @@ const CharactersView = () => {
 
 	useEffect(() => {
 		ProfilesLocalStorageService.saveProfiles(perfis)
-		setActiveIndex(_getActualNumberOfTabs())
+		setActiveIndex(perfis.length)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [perfis])
 
@@ -115,11 +116,7 @@ const CharactersView = () => {
 	const handleCloseProfile = (profile) => {
 		const copyProfiles = perfis.filter((perfil) => perfil.uuid !== profile.uuid)
 		addPerfil(copyProfiles)
-		setActiveIndex(_getActualNumberOfTabs())
-	}
-
-	const _getActualNumberOfTabs = () => {
-		return perfis.length - 1
+		setActiveIndex(perfis.length)
 	}
 
 	return (
@@ -131,6 +128,7 @@ const CharactersView = () => {
 				<Header />
 
 				<TabView style={{ width: '80%', marginBottom: '30px' }} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
+					<TabPanel header={'Apresentação'}><Presentation/></TabPanel>
 					{perfis.map(profile => <TabPanel header={profile.nome}> <Profile profileModel={profile} updateProfile={handleUpdateProfile} closeProfile={handleCloseProfile} downloadProfile={downloadProfile} /> </TabPanel>)}
 				</TabView>
 			</div>
