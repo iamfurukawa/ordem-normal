@@ -4,6 +4,7 @@ import { TabView, TabPanel } from 'primereact/tabview'
 import { Button } from 'primereact/button'
 import { Dialog } from 'primereact/dialog'
 import { InputText } from 'primereact/inputtext'
+import { confirmDialog } from 'primereact/confirmdialog'
 
 import ReactGA from 'react-ga'
 import { v4 as uuidv4 } from 'uuid'
@@ -16,8 +17,10 @@ import Presentation from './presentation'
 import ProfileModel from '../../models/character-profile'
 import ProfilesLocalStorageService from '../../services/local-storage/profiles-local-storage-service'
 
+import ProfileValidator from '../../validators/profile/profile-validator'
+
 const CharactersView = () => {
-	//ReactGA.initialize('UA-196562490-1', { debug: true })
+	ReactGA.initialize('UA-196562490-1')
 
 	const [isNewProfile, setNewProfile] = useState(false)
 
@@ -75,9 +78,14 @@ const CharactersView = () => {
 		})
 
 		const fileUploaded = event.target.files[0]
-		const perfilUploaded = JSON.parse(await _getBase64(fileUploaded))
-		perfilUploaded.uuid = uuidv4() //rewriting uuid to close one by one
-		addPerfil([...perfis, perfilUploaded])
+		try {
+			const perfilUploaded = JSON.parse(await _getBase64(fileUploaded))
+			perfilUploaded.uuid = uuidv4() //rewriting uuid to close one by one
+			ProfileValidator.validate(perfilUploaded)
+			addPerfil([...perfis, perfilUploaded])
+		} catch (e) {
+			alert('Essa ficha é inválida.')
+		}
 	}
 
 	const _getBase64 = (file) => {
@@ -114,9 +122,19 @@ const CharactersView = () => {
 	}
 
 	const handleCloseProfile = (profile) => {
-		const copyProfiles = perfis.filter((perfil) => perfil.uuid !== profile.uuid)
-		addPerfil(copyProfiles)
-		setActiveIndex(perfis.length)
+		confirmDialog({
+			message: 'Você deseja fazer download antes?',
+			header: 'Você perderá essa ficha',
+			icon: 'pi pi-exclamation-triangle',
+			rejectLabel: 'Pode fechar!',
+			acceptLabel: 'Sim',
+			reject: () => {
+				const copyProfiles = perfis.filter((perfil) => perfil.uuid !== profile.uuid)
+				addPerfil(copyProfiles)
+				setActiveIndex(perfis.length)
+			},
+			accept: () => {}
+		})
 	}
 
 	return (
@@ -128,7 +146,7 @@ const CharactersView = () => {
 				<Header />
 
 				<TabView style={{ width: '80%', marginBottom: '30px' }} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
-					<TabPanel header={'Apresentação'}><Presentation/></TabPanel>
+					<TabPanel header={'Apresentação'}><Presentation /></TabPanel>
 					{perfis.map(profile => <TabPanel header={profile.nome}> <Profile profileModel={profile} updateProfile={handleUpdateProfile} closeProfile={handleCloseProfile} downloadProfile={downloadProfile} /> </TabPanel>)}
 				</TabView>
 			</div>
