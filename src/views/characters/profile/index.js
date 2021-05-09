@@ -22,6 +22,7 @@ const Profile = ({ profileModel = new ProfileModel(), updateProfile = (profile) 
 
 	const [profile, setProfile] = useState(profileModel)
 	const [diceValue, setDiceValue] = useState(0)
+	const [diceText, setDiceText] = useState('...')
 
 	const handleSetProfile = (prop, entry) => {
 		const copyProfile = Object.assign({}, profile)
@@ -30,19 +31,21 @@ const Profile = ({ profileModel = new ProfileModel(), updateProfile = (profile) 
 		updateProfile(copyProfile)
 	}
 
-	const handleDice = (skill, diceMax = 20) => {
-		// profile[skill] temos os pts pra aquela skill, e max é o numero do dado
+	const handleDice = (skill, isD20 = true, diceMax = 20) => {
 		setDiceValue('...')
+		setDiceText('...')
 
 		const roll = () => {
-			setDiceValue(DiceService.rollDN(diceMax))
+			const diceValue = DiceService.rollDN(diceMax)
+			setDiceValue(diceValue)
+			setDiceText(DiceService.getResult(isD20)(profile[skill], diceValue))
 		}
 
 		_.debounce(roll, 1000)()
 	}
 
 	const DiceRoll = () => {
-		return <Dice value={diceValue} text={diceValue} />
+		return <Dice value={diceValue} text={diceText} />
 	}
 
 	const leftContents = (
@@ -74,7 +77,7 @@ const Profile = ({ profileModel = new ProfileModel(), updateProfile = (profile) 
 						<Skill name={"Inteligência"} value={profile.inteligencia} setValue={(v) => handleSetProfile('inteligencia', v)} action={() => handleDice('inteligencia')} isDisabled={isDisabled} />
 						<Skill name={"Carisma"} value={profile.carisma} setValue={(v) => handleSetProfile('carisma', v)} action={() => handleDice('carisma')} isDisabled={isDisabled} />
 						<Skill name={"Conhecimento"} value={profile.conhecimento} setValue={(v) => handleSetProfile('conhecimento', v)} action={() => handleDice('conhecimento')} isDisabled={isDisabled} />
-						<Skill name={"Exposição ao normal"} value={profile.exposicaoAoNormal} setValue={(v) => handleSetProfile('exposicaoAoNormal', v)} action={() => handleDice('exposicaoAoNormal', 100)} max={100} isDisabled={isDisabled} />
+						<Skill name={"Exposição ao normal"} value={profile.exposicaoAoNormal} setValue={(v) => handleSetProfile('exposicaoAoNormal', v)} action={() => handleDice('exposicaoAoNormal', false, 100)} max={100} isDisabled={isDisabled} />
 					</Fieldset>
 
 					<Fieldset className={styles.fieldset} legend="Secundárias">

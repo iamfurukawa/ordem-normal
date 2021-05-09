@@ -3,6 +3,8 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [![Twitter][twitter-shield]][twitter-url]
 
+## Para acessar o projeto
+https://iamfurukawa.github.io/ordem-normal/
 ## Sobre o projeto
 Aqui tem uma sugestão de ficha de personagem para o RPG Ordem Normal, nela contém alguns atributos padrões em RPG como: força, destreza, constituição, inteligência, carisma e conhecimento. Também tem outros menos comum: sorte, encontrar, escutar, furtividade, esquiva, primeiros socorros. E por fim algumas mais especificas: exposição ao normal, usar eletronicos, tarefa doméstica, cozinhar, dirigir, flertar, dançar, socializar, trabalhar, atrividade fisica, brincar com pet, dicção e imunidade.
 &nbsp;
@@ -13,7 +15,9 @@ Desde guardar os pontos das skills do personagem é possível registrar uma imag
  - A versão inicial desse projeto contava com integração com o firebase para compartilhamento de fichas de personagem, mas pelo alto consumo de dados isso se tornaria inviável por agora.
  - É possível integrar com o firebase de forma limitada pra salvar as roladas de dados.
  - Sugestões de melhorias, novos atributos ou funcionalidades sempre são bem vindas!
-
+## Referências das roladas de dados
+ - https://github.com/Dogoso/RPG-FICHA-DINAMICA
+ - https://www.youtube.com/watch?v=3L3dY1zBO3c&ab_channel=Ryke
 &nbsp;
 ## Para esse projeto foi utilizado
  ![react-badge]
